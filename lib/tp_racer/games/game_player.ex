@@ -15,9 +15,9 @@ defmodule TpRacer.Games.GamePlayer do
     field :characters_typed, :integer
 
     # Can be derived:
-    # 	accuracy = game.character_count / characters_typed * 100
-    # 	raw WPM = (characters_typed / 5) / (play_ms / 60000)
-    # 	net WPM = (game.character_count / 5) / (play_ms / 60000)
+    # 	accuracy = game.character_count * 100.0 / characters_typed
+    # 	raw WPM = (characters_typed / 5.0) / (play_ms / 60000.0)
+    # 	net WPM = (game.character_count / 5.0) / (play_ms / 60000.0)
     # Technically ranking is also derivable (row index order by play_ms),
     # but it's easier to just store.
   end
