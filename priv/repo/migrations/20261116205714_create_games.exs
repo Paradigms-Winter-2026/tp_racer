@@ -17,5 +17,13 @@ defmodule TpRacer.Repo.Migrations.CreateGames do
     end
 
     create index(:game_players, [:user_id])
+
+    create constraint(:game_players, :consistent_nullability,
+             check: """
+             (play_ms IS NULL AND ranking IS NULL AND characters_typed IS NULL)
+             OR
+             (play_ms IS NOT NULL AND ranking IS NOT NULL AND characters_typed IS NOT NULL)
+             """
+           )
   end
 end
