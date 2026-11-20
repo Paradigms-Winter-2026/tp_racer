@@ -3,7 +3,11 @@ defmodule TpRacer.Repo.Migrations.CreateGames do
 
   def change do
     create table(:games) do
-      add(:start_time, :utc_datetime, null: false, default: fragment("CURRENT_TIMESTAMP"))
+      add(:start_time, :utc_datetime,
+        null: false,
+        default: fragment("timezone('UTC', now())")
+      )
+
       add(:word_count, :integer, null: false)
       add(:character_count, :integer, null: false)
     end
