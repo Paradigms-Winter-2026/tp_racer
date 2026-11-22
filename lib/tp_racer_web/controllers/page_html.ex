@@ -5,6 +5,7 @@ defmodule TpRacerWeb.PageHTML do
   See the `page_html` directory for all templates available.
   """
   use TpRacerWeb, :html
+  import TpRacerWeb.StatsComponents
 
   embed_templates "page_html/*"
 end

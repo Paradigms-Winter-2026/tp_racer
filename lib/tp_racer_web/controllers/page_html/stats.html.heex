@@ -1,19 +1,10 @@
 <Layouts.flash_group flash={@flash} />
+<div class="mx-50 flex flex-col">
 <div class="flex flex-row gap-3">
-  <div class="flex flex-col">
-    <h1><%= @user_name %></h1>
-  </div>
-  <div class="flex flex-col">
-    <p>tests started</p>
-    <p><%= @tests_started %></p>
-  </div>
-  <div class="flex flex-col">
-    <p>tests completed</p>
-    <p><%= @tests_completed %></p>
-  </div>
-  <div class="flex flex-col">
-    <p>time typing</p>
-    <p><%= @time_typing %></p>
-  </div>
+  <.user_info user_name={@user_name}/>
+  <.stat_card label="tests started" value={@tests_started} />
+  <.stat_card label="tests completed" value={@tests_completed} />
+  <.stat_card label="time typing" value={@time_typing} />
 </div>
-
+<.games games={@games} />
+</div>
