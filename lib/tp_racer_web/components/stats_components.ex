@@ -39,14 +39,21 @@ defmodule TpRacerWeb.StatsComponents do
   attr :raw, :integer, required: true
   attr :accuracy, :integer, required: true
   attr :dt, :any, required: true
+  attr :colour, :string, required: true
   def game_info(assigns) do
+    assigns = assign(
+    assigns, :colour,
+    unless(rem(assigns.index, 2) == 0, 
+        do: "bg-slate-800", 
+        else: ""
+    ))
     ~H"""
-    <tr>
-      <td class="text-md">{@wpm}</td>
-      <td class="text-md">{@raw}</td>
-      <td class="text-md">{@accuracy}</td>
-      <td class="text-md flex flex-col">
-        <p class="text-md">{@dt.date}</p>
+    <tr class={@colour}>
+      <td class="text-lg">{@wpm}</td>
+      <td class="text-lg">{@raw}</td>
+      <td class="text-lg">{@accuracy}</td>
+      <td class="text-md flex flex-col my-2">
+        <p class="text-lg">{@dt.date}</p>
         <p class="text-sm">{@dt.time}</p>
       </td>
     </tr>
@@ -58,6 +65,7 @@ defmodule TpRacerWeb.StatsComponents do
   """
   attr :games, :list, required: true
   def games(assigns) do
+    # TODO: add filter for games completed
     ~H"""
     <div class="flex flex-col">
     <p class="text-xl my-2">games</p>
@@ -68,8 +76,8 @@ defmodule TpRacerWeb.StatsComponents do
         <th class="text-left">accuracy</th>
         <th class="text-left">date</th>
       </tr>
-      <%= for game <- @games do %>
-        <.game_info {game} />
+      <%= for {game, index} <- Enum.with_index(@games) do %>
+          <.game_info {game} index={index} />
       <% end %>
     </table>
     </div>
