@@ -1,0 +1,20 @@
+FROM hexpm/elixir:1.20.5-erlang-28.4.3-ubuntu-resolute-20261105.1
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    curl \
+    inotify-tools \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+RUN mix local.hex --force && mix local.rebar --force
+
+ENV MIX_ENV=dev
+
+COPY docker/dev-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
+RUN chmod +x /usr/local/bin/dev-entrypoint.sh
+
+ENTRYPOINT ["dev-entrypoint.sh"]
+CMD ["mix", "phx.server"]

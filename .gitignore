@@ -35,3 +35,7 @@ tp_racer-*.tar
 npm-debug.log
 /assets/node_modules/
 
+# Ignore .env files
+.env
+.env.*
+!.env.example
