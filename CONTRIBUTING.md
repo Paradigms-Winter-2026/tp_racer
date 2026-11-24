@@ -80,7 +80,7 @@ revert: revert "feat: add experimental sync"
 
 ## Pull Request Workflow
 
-1. Fork the repo and create a branch from `dev` (e.g. `feat/resend-verification`).
+1. Clone the repo and create a branch from `main` (e.g. `feat/resend-verification`).
 2. Make your changes, following the commit conventions above.
 3. Run tests and linters locally.
 4. Open a pull request with a conventional-commit-style title and a clear description.
