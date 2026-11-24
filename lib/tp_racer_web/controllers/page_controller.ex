@@ -13,25 +13,26 @@ defmodule TpRacerWeb.PageController do
       time_typing: "12:34:56",
       games: [
         %{
-          wpm: 123, 
-          raw: 123, 
-          accuracy: 0.1, 
+          wpm: 123,
+          raw: 123,
+          accuracy: 0.1,
           dt: %{date: "2026-11-22", time: "00:00"}
         },
         %{
-          wpm: 98, 
-          raw: 123, 
-          accuracy: 0.1, 
+          wpm: 98,
+          raw: 123,
+          accuracy: 0.1,
           dt: %{date: "2026-11-22", time: "00:00"}
         },
         %{
-          wpm: 1, 
-          raw: 123, 
-          accuracy: 0.1, 
+          wpm: 1,
+          raw: 123,
+          accuracy: 0.1,
           dt: %{date: "2026-11-22", time: "00:00"}
         }
       ]
     ]
+
     render(conn, :stats, opts)
   end
 end
