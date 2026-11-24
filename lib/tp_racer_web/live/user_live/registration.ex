@@ -36,6 +36,17 @@ defmodule TpRacerWeb.UserLive.Registration do
           <.button phx-disable-with="Creating account..." class="btn btn-primary w-full">
             Create an account
           </.button>
+
+          <div class="divider">or</div>
+
+          <div class="space-y-3">
+            <.link href={~p"/auth/github"} class="btn btn-outline w-full">
+              Sign up with GitHub
+            </.link>
+            <.link href={~p"/auth/google"} class="btn btn-outline w-full">
+              Sign up with Google
+            </.link>
+          </div>
         </.form>
       </div>
     </Layouts.app>
