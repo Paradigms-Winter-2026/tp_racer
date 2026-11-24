@@ -71,6 +71,7 @@ defmodule TpRacerWeb.StatsComponents do
     A table of games
   """
   attr :games, :list, required: true
+
   def games(assigns) do
     # TODO: add filter for games completed
     ~H"""
