@@ -22,7 +22,9 @@ services:
       db:
         condition: service_healthy
     env_file:
-      - .env
+      - .env.example
+      - path: .env
+        required: false
     environment:
       DB_HOST: db
     ports:
