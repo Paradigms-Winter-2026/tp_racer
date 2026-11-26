@@ -281,6 +281,29 @@ defmodule TpRacer.Accounts do
     :ok
   end
 
+  ## OAuth
+
+  @doc """
+  Finds a user by email or creates a confirmed one from OAuth provider data.
+
+  Only pass emails the provider has verified. Returns `{:error, :no_email}`
+  if the provider gave none.
+  """
+  def find_or_create_oauth_user(%{email: email}) when is_binary(email) do
+    case get_user_by_email(email) do
+      %User{} = user ->
+        {:ok, user}
+
+      nil ->
+        %User{}
+        |> User.email_changeset(%{email: email})
+        |> Ecto.Changeset.put_change(:confirmed_at, DateTime.utc_now(:second))
+        |> Repo.insert()
+    end
+  end
+
+  def find_or_create_oauth_user(_), do: {:error, :no_email}
+
   ## Token helper
 
   defp update_user_and_delete_all_tokens(changeset) do
